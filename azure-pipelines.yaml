@@ -1,0 +1,17 @@
+trigger:
+- main
+
+stages:
+- stage: build
+
+  pool:
+   name: Aks-Build-agents
+  
+  jobs:
+  - job: buildApp
+
+  - job: buildApp02
+    steps:
+    - script: |
+        echo "Hello from inside Docker Container: $HOSTNAME"
+        printenv
