@@ -19,5 +19,5 @@ stages:
   - job: buildApp02
     steps:
     - script: |
-        echo "Hello from inside Docker Container: $HOSTNAME"
-        printenv
+        ##echo "Hello from inside Docker Container: $HOSTNAME"
+        hostname 
