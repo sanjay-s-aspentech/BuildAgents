@@ -5,7 +5,7 @@ stages:
 - stage: build
 
   pool:
-   name: Aks-Build-agents
+   name: Aks-pool
   
   jobs:
   - job: buildApp
