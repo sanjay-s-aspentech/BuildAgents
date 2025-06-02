@@ -28,6 +28,10 @@ steps:
     cliProjectKey: 'test-proj'
     cliProjectName: 'test-proj'
     cliSources: '.'
+    extraProperties: |
+      sonar.pullrequest.key="test"
+      sonar.pullrequest.branch="main"
+      sonar.pullrequest.base="."
 - task: SonarQubeAnalyze@7
   inputs:
     jdkversion: 'JAVA_HOME'
