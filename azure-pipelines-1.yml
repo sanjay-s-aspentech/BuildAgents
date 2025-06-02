@@ -17,3 +17,12 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+- task: SonarQubePrepare@7
+  inputs:
+    SonarQube: 'SonarQube-2'
+    scannerMode: 'cli'
+    cliScannerVersion: '7.1.0.4889'
+    configMode: 'manual'
+    cliProjectKey: 'test-proj'
+    cliProjectName: 'test-proj'
+    cliSources: '.'
