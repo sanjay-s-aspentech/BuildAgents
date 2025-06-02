@@ -6,14 +6,48 @@
 trigger:
 - main
 
+pr: none
+
 pool:
-  name: Aks-Build-agents
+  vmImage: ubuntu-latest
 
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
+- task: SonarQubePrepare@7
+  inputs:
+    SonarQube: 'SonarQube-2'
+    scannerMode: 'cli'
+    cliScannerVersion: '7.1.0.4889'
+    configMode: 'manual'
+    cliProjectKey: 'test-proj'
+    cliProjectName: 'test-proj'
+    cliSources: '.'
+    extraProperties: |
+          sonar.pullrequest.key= "test-proj"
+          sonar.pullrequest.branch="main"
+          sonar.pullrequest.base="main"
+- task: SonarQubeAnalyze@7
+  inputs:
+    jdkversion: 'JAVA_HOME'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+# - script: |
+#     echo Add other tasks to build, test, and deploy your project.
+#     echo See https://aka.ms/yaml
+#   displayName: 'Run a multi-line script'
+# - task: SonarScanner@1
+#   inputs:
+#     endpoint: 'SonarQube'
+#     sonarServer: 'http://40.76.138.192:9000'
+#     version: '4.8.0.2856'
+#     configMode: 'manual'
+#     projectKey: 'TEST'
+#     projectName: 'TEST'
+#     projectVersion: '1.0'
+#     branchName: 'main'
+#     sources: '*'
+#     extraProperties: |
+#       # Write your additional sonar-scanner properties here.
+      
+#       sonar.exclusions=**\tests
+#     debug: true
