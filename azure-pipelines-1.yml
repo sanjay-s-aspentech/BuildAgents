@@ -6,6 +6,8 @@
 trigger:
 - main
 
+pr: none
+
 pool:
   name: Aks-Build-agents
 
@@ -26,3 +28,9 @@ steps:
     cliProjectKey: 'test-proj'
     cliProjectName: 'test-proj'
     cliSources: '.'
+- task: SonarQubeAnalyze@7
+  inputs:
+    jdkversion: 'JAVA_HOME'
+- task: SonarQubePublish@7
+  inputs:
+    pollingTimeoutSec: '300'
